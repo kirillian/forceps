@@ -86,7 +86,7 @@ module Forceps
       end
 
       def finder_for_remote_object(remote_object)
-        finder = finders_for_reusing_classes[remote_object.class.base_class]
+        finder = finders_for_reusing_classes[remote_object.class.base_class.name.to_sym]
         finder = build_attribute_finder(remote_object, finder) if finder.is_a? Symbol
         finder
       end
@@ -130,7 +130,7 @@ module Forceps
       end
 
       def invoke_callbacks(callback_name, copied_object, remote_object)
-        callback = callbacks_for(callback_name)[copied_object.class]
+        callback = callbacks_for(callback_name)[copied_object.class.name.to_sym]
         return unless callback
         callback.call(copied_object, remote_object)
       end
