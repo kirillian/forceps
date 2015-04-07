@@ -170,7 +170,7 @@ module Forceps
       end
 
       def calculate_attributes_to_exclude(remote_object)
-        ((options[:exclude] && options[:exclude][remote_object.class.base_class.to_sym]) || []).collect(&:to_sym)
+        ((options[:exclude] && options[:exclude][remote_object.class.base_class.name.to_sym]) || []).collect(&:to_sym)
       end
 
       def copy_simple_attributes(target_local_object, source_remote_object)
